@@ -3,15 +3,13 @@ import Link from 'next/link'
 
 import { auth } from '@/auth'
 import { Button } from '@/components/ui/button'
-import {
-  IconOpenAI,
-  IconSeparator,
-} from '@/components/ui/icons'
+import { IconOpenAI, IconSeparator } from '@/components/ui/icons'
 import { UserMenu } from '@/components/user-menu'
 import { SidebarMobile } from './sidebar-mobile'
 import { SidebarToggle } from './sidebar-toggle'
 import { ChatHistory } from './chat-history'
 import { Session } from '@/lib/types'
+import Image from 'next/image'
 
 async function UserOrLogin() {
   const session = (await auth()) as Session
@@ -26,8 +24,20 @@ async function UserOrLogin() {
         </>
       ) : (
         <Link href="/new" rel="nofollow">
-          <IconOpenAI className="size-6 mr-2 dark:hidden" />
-          <IconOpenAI className="hidden size-6 mr-2 dark:block" />
+          <Image
+            className="mr-2 dark:hidden"
+            src={'/BleedAI_logo.svg'}
+            alt="BleedAI"
+            width={24}
+            height={24}
+          />
+          <Image
+            className="mr-2"
+            src={'/BleedAI_logo.svg'}
+            alt="BleedAI"
+            width={24}
+            height={24}
+          />
         </Link>
       )}
       <div className="flex items-center">

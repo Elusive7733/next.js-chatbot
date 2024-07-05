@@ -10,18 +10,18 @@ import { Toaster } from '@/components/ui/sonner'
 
 export const metadata = {
   title: {
-    default: 'Jean Chatbot'
+    default: 'Jean Chat Bot'
   },
-  description: 'An AI-powered chatbot for Jean built with Next.js.',
+  description: 'An AI-powered chat bot for Jean built with Next.js.',
   icons: {
-    icon: '/favicon.ico',
+    icon: '/BleedAI_logo.svg',
     shortcut: '/favicon-16x16.png',
     apple: '/apple-touch-icon.png'
   },
   author: {
     name: 'Abdullah Raheel',
     github: 'https://github.com/Elusive7733'
-  }
+  },
 }
 
 export const viewport = {
