@@ -16,6 +16,8 @@ export function ChatList({ messages, session, isShared }: ChatList) {
     return null
   }
 
+  const lastMessageIsFromBot = (messages.length - 1) % 2 !== 0;
+
   return (
     <div className="relative mx-auto max-w-2xl px-4">
       {!isShared && !session ? (
@@ -45,7 +47,7 @@ export function ChatList({ messages, session, isShared }: ChatList) {
       {messages.map((message, index) => (
         <div key={message.id}>
           {message.display}
-          {index === messages.length - 1 ? (
+          {index === messages.length - 1 && lastMessageIsFromBot ? (
             <Feedback />
           ) : (
             <Separator className="my-4" />
