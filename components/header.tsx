@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { auth } from '@/auth'
 import { Button } from '@/components/ui/button'
 import {
-  IconNextChat,
   IconOpenAI,
   IconSeparator,
 } from '@/components/ui/icons'
