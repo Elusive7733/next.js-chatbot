@@ -17,6 +17,7 @@ import {
 import { useEnterSubmit } from '@/lib/hooks/use-enter-submit'
 import { nanoid } from 'nanoid'
 import { useRouter } from 'next/navigation'
+import { UploadIcon } from '@radix-ui/react-icons'
 
 export function PromptForm({
   input,
@@ -66,18 +67,18 @@ export function PromptForm({
         setMessages(currentMessages => [...currentMessages, responseMessage])
       }}
     >
-      <div className="relative flex max-h-60 w-full grow flex-col overflow-hidden bg-background px-8 sm:rounded-md sm:border sm:px-12">
+      <div className="relative flex w-full grow flex-col overflow-hidden bg-background px-8 sm:rounded-md sm:border sm:px-12">
         <Tooltip>
           <TooltipTrigger asChild>
             <Button
               variant="outline"
               size="icon"
-              className="absolute left-0 top-[14px] size-8 rounded-full bg-background p-0 sm:left-4"
+              className="absolute left-0 top-[14px] size-8 rounded-full bg-background p- sm:left-4"
               onClick={() => {
                 router.push('/ingestion')
               }}
             >
-              <IconPlus />
+              <UploadIcon />
               <span className="sr-only">Data Ingestion</span>
             </Button>
           </TooltipTrigger>

@@ -10,9 +10,19 @@ import { BsFiletypeRaw } from 'react-icons/bs'
 import { Input } from '@/components/ui/input'
 import { toast } from 'sonner'
 import { useRouter } from 'next/navigation'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger
+} from '@/components/ui/dropdown-menu'
+import { DropdownMenuLabel } from '@radix-ui/react-dropdown-menu'
 
 export default function Page() {
   const [fileExtension, setFileExtension] = useState('')
+  const [category, setCategory] = useState('')
   const router = useRouter()
 
   const handleFileUpload = (event: any) => {
@@ -50,7 +60,7 @@ export default function Page() {
     <div className="flex flex-col items-center justify-center my-12 p-12">
       <h1 className="text-3xl font-bold text-white mb-8">Data Ingestion</h1>
       <div className="flex flex-col gap-8 items-center w-3/4 p-4 rounded-lg shadow-lg border-2 border-gray-700 shadow-white/10">
-        <div className="w-full">
+        {/* <div className="w-full">
           <label htmlFor="prompt" className="font-semibold text-lg block">
             Prompt
           </label>
@@ -59,7 +69,7 @@ export default function Page() {
             placeholder="Enter your prompt here..."
             className="w-full"
           />
-        </div>
+        </div> */}
 
         <div className="w-full">
           <label htmlFor="file" className="font-semibold text-base mt-4 block">
@@ -73,19 +83,47 @@ export default function Page() {
                        file:font-medium file:bg-transparent file:text-white file:shadow-sm hover:file:bg-gray-100/10"
           />
 
-        {fileExtension && (
-          <Badge
-            className="flex gap-2 h-6 w-fit m-4 text-sm items-center"
-            variant={'secondary'}
-          >
-            {getFileIcon(fileExtension)}
-            {fileExtension.toUpperCase()}
-          </Badge>
-        )}
+          {fileExtension && (
+            <Badge
+              className="flex gap-2 h-6 w-fit mt-4 text-sm items-center"
+              variant={'secondary'}
+            >
+              {getFileIcon(fileExtension)}
+              {fileExtension.toUpperCase()}
+            </Badge>
+          )}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button className="mt-6 w-1/6" variant="secondary">
+                Category
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-56">
+              <DropdownMenuLabel className='p-2'>Select Category</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuRadioGroup
+                value={category}
+                onValueChange={setCategory}
+              >
+                <DropdownMenuRadioItem value="meeting-transcription">
+                  Meeting Transcription
+                </DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value="email">
+                  Email
+                </DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value="jotform">
+                  Jotform
+                </DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value="other">
+                  Other
+                </DropdownMenuRadioItem>
+              </DropdownMenuRadioGroup>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
 
         <Button
-          className="mt-4 px-4 py-2"
+          className="mt-4 px-4 py-2 w-1/6"
           variant={'default'}
           onClick={handleSubmission}
         >
