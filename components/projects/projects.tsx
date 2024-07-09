@@ -38,8 +38,6 @@ const Projects = () => {
     setCollapsed(true); // Collapse the project list
   };
 
-  console.log(projects)
-
   return (
     <div className="fixed top-20 left-5 h-full z-50">
       <div

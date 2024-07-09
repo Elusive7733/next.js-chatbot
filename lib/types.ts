@@ -56,3 +56,5 @@ export type Project = {
 export type ProjectCollection = {
   [projectId: string]: Project;
 };
+
+export type Category = keyof ProjectFiles

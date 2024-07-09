@@ -2,22 +2,26 @@ import React from 'react'
 
 
 import ListFiles from './list-files'
-import { files } from '@/data/dummyData'
+import { useProjectStore } from '@/lib/store/store'
 
-interface ProjectFilesProps {
-  currentProject: string
-}
+const ProjectFiles = ({ }) => {
+  
+  const { projects, currentProjectId } = useProjectStore();
 
-const ProjectFiles = ({ currentProject }: ProjectFilesProps) => {
-  let projectFiles = files[currentProject]
-
+  let projectFiles
+  if(currentProjectId) {
+    projectFiles = projects[currentProjectId].files
+  } else {
+    return <div className='m-2 font-semibold'>Select a project!</div>
+  }
+  
   return (
     <div className="w-full px-4 mx-3">
       <div className="m-2 border border-gray-600/40 p-2 rounded-lg">
         <h3 className="font-medium">Meeting Transcripts</h3>
         <hr />
         <ul className="mt-2">
-          <ListFiles files={projectFiles.meetingTranscripts}  />
+          <ListFiles files={projectFiles.meetingTranscripts} category={'meetingTranscripts'}  />
         </ul>
       </div>
 
@@ -25,7 +29,7 @@ const ProjectFiles = ({ currentProject }: ProjectFilesProps) => {
         <h3 className="font-medium">Emails</h3>
         <hr />
         <ul className="mt-2">
-          <ListFiles files={projectFiles.emails} />
+          <ListFiles files={projectFiles.emails} category={'emails'}  />
         </ul>
       </div>
 
@@ -33,7 +37,7 @@ const ProjectFiles = ({ currentProject }: ProjectFilesProps) => {
         <h3 className="font-medium">Jotforms</h3>
         <hr />
         <ul className="mt-2">
-          <ListFiles files={projectFiles.jotforms} />
+          <ListFiles files={projectFiles.jotforms} category={'jotforms'} />
         </ul>
       </div>
 
@@ -41,7 +45,7 @@ const ProjectFiles = ({ currentProject }: ProjectFilesProps) => {
         <h3 className="font-medium">Others</h3>
         <hr />
         <ul className="mt-2">
-          <ListFiles files={projectFiles.other} />
+          <ListFiles files={projectFiles.other} category={'other'} />
         </ul>
       </div>
     </div>

@@ -3,11 +3,11 @@ import React, { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import ProjectFiles from '@/components/files/project-files'
+import { useProjectStore } from '@/lib/store/store'
 
 
 const Files = () => {
   const [collapsed, setCollapsed] = useState(true)
-  const [currentProject, setCurrentProject] = useState('Project 1')
 
   return (
     <div className="fixed top-20 right-5 h-full z-50">
@@ -35,7 +35,7 @@ const Files = () => {
           <span className="text-white">Docs in memory</span>
         </div>
         {!collapsed && (
-          <ProjectFiles currentProject={currentProject}/>
+          <ProjectFiles/>
         )}
       </div>
     </div>

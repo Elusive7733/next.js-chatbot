@@ -1,14 +1,8 @@
 'use client'
-
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { SiMicrosoftexcel, SiMicrosoftword } from 'react-icons/si'
-import { FaRegFilePdf } from 'react-icons/fa'
-import { BsFiletypeRaw } from 'react-icons/bs'
 import { Input } from '@/components/ui/input'
-import { toast } from 'sonner'
-import { useRouter } from 'next/navigation'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,25 +10,44 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
+import { toast } from 'sonner'
+import { useRouter } from 'next/navigation'
+import { useProjectStore } from '@/lib/store/store'
+import { SiMicrosoftexcel, SiMicrosoftword } from 'react-icons/si'
+import { FaRegFilePdf } from 'react-icons/fa'
+import { BsFiletypeRaw } from 'react-icons/bs'
+import { Category } from '@/lib/types'
+
+
+
 
 export default function Page() {
   const [fileExtension, setFileExtension] = useState('')
-  const [category, setCategory] = useState('')
+  const [file, setFile] = useState<File | null>(null)
+  const [category, setCategory] = useState<Category | ''>('')
   const router = useRouter()
+  const { currentProjectId, addFile } = useProjectStore()
 
   const handleFileUpload = (event: any) => {
     const file = event.target.files[0]
     if (file) {
       const extension = file.name.split('.').pop()
       setFileExtension(extension)
+      setFile(file)
     }
   }
 
   const handleSubmission = async () => {
-    toast.success('Data uploaded successfully')
-    setTimeout(() => {
-      router.push('/')
-    }, 1000)
+    if (currentProjectId && category && file) {
+      // Ensure category is not empty and is a valid key of ProjectFiles
+      addFile(currentProjectId, category, file.name) // Note: passing file.name instead of file object
+      toast.success('Data uploaded successfully')
+      setTimeout(() => {
+        router.push('/')
+      }, 1000)
+    } else {
+      toast.error('Please select a file and category')
+    }
   }
 
   const getFileIcon = (extension: string) => {
@@ -57,17 +70,6 @@ export default function Page() {
     <div className="flex flex-col items-center justify-center my-12 p-12">
       <h1 className="text-3xl font-bold text-white mb-8">Data Ingestion</h1>
       <div className="flex flex-col gap-8 items-center w-1/2 p-4 rounded-lg shadow-lg border-2 border-gray-700 shadow-white/10">
-        {/* <div className="w-full">
-          <label htmlFor="prompt" className="font-semibold text-lg block">
-            Prompt
-          </label>
-          <Textarea
-            id="prompt"
-            placeholder="Enter your prompt here..."
-            className="w-full"
-          />
-        </div> */}
-
         <div className="w-full">
           <label htmlFor="file" className="font-semibold text-base mt-4 block">
             File Upload
@@ -79,7 +81,6 @@ export default function Page() {
             className="file:mr-4 file:py-2 h-fit file:px-4 file:rounded-full file:border file:border-gray-300 file:text-sm 
                        file:font-medium file:bg-transparent file:text-white file:shadow-sm hover:file:bg-gray-100/10"
           />
-
           {fileExtension && (
             <Badge
               className="flex gap-2 h-6 w-fit mt-4 text-sm items-center"
@@ -99,15 +100,15 @@ export default function Page() {
             <DropdownMenuContent className="w-56">
               <DropdownMenuRadioGroup
                 value={category}
-                onValueChange={setCategory}
+                onValueChange={value => setCategory(value as Category)}
               >
-                <DropdownMenuRadioItem value="meetingTranscription">
+                <DropdownMenuRadioItem value="meetingTranscripts">
                   Meeting Transcription
                 </DropdownMenuRadioItem>
-                <DropdownMenuRadioItem value="email">
+                <DropdownMenuRadioItem value="emails">
                   Email
                 </DropdownMenuRadioItem>
-                <DropdownMenuRadioItem value="jotform">
+                <DropdownMenuRadioItem value="jotforms">
                   Jotform
                 </DropdownMenuRadioItem>
                 <DropdownMenuRadioItem value="other">
@@ -117,7 +118,6 @@ export default function Page() {
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
-
         <Button
           className="mt-4 px-4 py-2 w-1/6"
           variant={'default'}

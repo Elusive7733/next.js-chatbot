@@ -1,16 +1,22 @@
 import React from 'react'
-import { Button } from '../ui/button'
 import { FaRegTrashAlt } from 'react-icons/fa'
+import { useProjectStore } from '@/lib/store/store'
+import { Category } from '@/lib/types'
 
 interface ListFilesProps {
   files: string[]
+  category?: Category
 }
 
-const ListFiles = ({ files }: ListFilesProps) => {
-  if (!files || files.length === 0) return <div>No files</div>
+const ListFiles = ({ files, category }: ListFilesProps) => {
+  const { deleteFile, currentProjectId } = useProjectStore()
+  if (!files || files.length === 0) return <div className='text-xs font-light'>No files</div>
 
   const handleDeleteClick = (fileName: string) => {
-    console.log(fileName)
+    if (!fileName) return
+    if (currentProjectId && category) {
+      deleteFile(currentProjectId, category, fileName)
+    }
   }
 
   return (

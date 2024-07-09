@@ -16,7 +16,7 @@ interface ProjectStore {
   deleteFile: (
     projectId: string,
     fileType: keyof ProjectFiles,
-    fileIndex: number
+    fileName: string
   ) => void
 }
 
@@ -60,7 +60,7 @@ export const useProjectStore = create<ProjectStore>(set => ({
         }
       }
     })),
-  deleteFile: (projectId, fileType, fileIndex) =>
+  deleteFile: (projectId, fileType, fileName) =>
     set(state => ({
       projects: {
         ...state.projects,
@@ -69,7 +69,7 @@ export const useProjectStore = create<ProjectStore>(set => ({
           files: {
             ...state.projects[projectId].files,
             [fileType]: state.projects[projectId].files[fileType].filter(
-              (_, index) => index !== fileIndex
+              file => file !== fileName
             )
           }
         }
