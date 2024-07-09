@@ -7,6 +7,8 @@ import { TailwindIndicator } from '@/components/tailwind-indicator'
 import { Providers } from '@/components/providers'
 import { Header } from '@/components/header'
 import { Toaster } from '@/components/ui/sonner'
+import Files from '../components/files/files'
+import Projects from '../components/projects/projects'
 
 export const metadata = {
   title: {
@@ -21,7 +23,7 @@ export const metadata = {
   author: {
     name: 'Abdullah Raheel',
     github: 'https://github.com/Elusive7733'
-  },
+  }
 }
 
 export const viewport = {
@@ -54,7 +56,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
         >
           <div className="flex flex-col min-h-screen">
             <Header />
+            <Files />
             <main className="flex flex-col flex-1 bg-muted/50">{children}</main>
+            <Projects />
           </div>
           <TailwindIndicator />
         </Providers>
