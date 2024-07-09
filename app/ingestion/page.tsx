@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { Badge } from '@/components/ui/badge'
-import { Textarea } from '@/components/ui/textarea'
 import { Button } from '@/components/ui/button'
 import { SiMicrosoftexcel, SiMicrosoftword } from 'react-icons/si'
 import { FaRegFilePdf } from 'react-icons/fa'
@@ -15,10 +14,8 @@ import {
   DropdownMenuContent,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
-  DropdownMenuSeparator,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
-import { DropdownMenuLabel } from '@radix-ui/react-dropdown-menu'
 
 export default function Page() {
   const [fileExtension, setFileExtension] = useState('')
@@ -59,7 +56,7 @@ export default function Page() {
   return (
     <div className="flex flex-col items-center justify-center my-12 p-12">
       <h1 className="text-3xl font-bold text-white mb-8">Data Ingestion</h1>
-      <div className="flex flex-col gap-8 items-center w-3/4 p-4 rounded-lg shadow-lg border-2 border-gray-700 shadow-white/10">
+      <div className="flex flex-col gap-8 items-center w-1/2 p-4 rounded-lg shadow-lg border-2 border-gray-700 shadow-white/10">
         {/* <div className="w-full">
           <label htmlFor="prompt" className="font-semibold text-lg block">
             Prompt
@@ -104,7 +101,7 @@ export default function Page() {
                 value={category}
                 onValueChange={setCategory}
               >
-                <DropdownMenuRadioItem value="meeting-transcription">
+                <DropdownMenuRadioItem value="meetingTranscription">
                   Meeting Transcription
                 </DropdownMenuRadioItem>
                 <DropdownMenuRadioItem value="email">
