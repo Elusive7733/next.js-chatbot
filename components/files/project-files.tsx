@@ -1,7 +1,8 @@
 import React from 'react'
 
-import { files } from '@/data/dummyData'
+
 import ListFiles from './list-files'
+import { files } from '@/data/dummyData'
 
 interface ProjectFilesProps {
   currentProject: string

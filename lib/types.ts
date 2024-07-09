@@ -47,6 +47,12 @@ export type ProjectFiles = {
   other: string[];
 };
 
+export type Project = {
+  projectId: string;
+  projectName: string;
+  files: ProjectFiles;
+};
+
 export type ProjectCollection = {
-  [projectName: string]: ProjectFiles;
+  [projectId: string]: Project;
 };

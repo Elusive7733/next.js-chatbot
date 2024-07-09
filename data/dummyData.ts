@@ -1,6 +1,6 @@
 import { ProjectCollection } from '@/lib/types'
 
-export const files: ProjectCollection = {
+export const files = {
   'Project 1': {
     meetingTranscripts: [
       'transcript_ks82p1jnf.pdf',
