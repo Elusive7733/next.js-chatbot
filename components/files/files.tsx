@@ -1,12 +1,13 @@
 'use client'
 import React, { useState } from 'react'
-import { Button } from '@/components/ui/button' // Ensure your path to Button component is correct
+import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
-import { files } from '@/data/dummyData'
-import { TrashIcon } from '@radix-ui/react-icons'
+import ProjectFiles from '@/components/files/project-files'
+
 
 const Files = () => {
   const [collapsed, setCollapsed] = useState(true)
+  const [currentProject, setCurrentProject] = useState('Project 1')
 
   return (
     <div className="fixed top-20 right-5 h-full z-50">
@@ -34,28 +35,7 @@ const Files = () => {
           <span className="text-white">Docs in memory</span>
         </div>
         {!collapsed && (
-          <>
-            <ul className="p-4 w-full text-center flex-wrap break-words text-wrap overflow-x-auto">
-              {Object.values(files).map((file, index) => (
-                <li
-                  key={index}
-                  className={cn(
-                    `py-2 m-1 px-4 w-full hover:bg-white/10 rounded cursor-pointer break-words text-wrap overflow-x-auto flex-col gap-2`
-                  )}
-                  onClick={() => console.log(file)}
-                >
-                  {file.emails[0]}
-                  {file.jotforms[0]}
-                  {file.meetingTranscripts[0]}
-                  {file.other[0]}
-
-                  <Button className="" variant={'destructive'}>
-                    <TrashIcon className="size-6 text-white" />
-                  </Button>
-                </li>
-              ))}
-            </ul>
-          </>
+          <ProjectFiles currentProject={currentProject}/>
         )}
       </div>
     </div>

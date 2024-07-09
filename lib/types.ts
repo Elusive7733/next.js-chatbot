@@ -39,3 +39,14 @@ export interface User extends Record<string, any> {
   password: string
   salt: string
 }
+
+export type ProjectFiles = {
+  meetingTranscripts: string[];
+  emails: string[];
+  jotforms: string[];
+  other: string[];
+};
+
+export type ProjectCollection = {
+  [projectName: string]: ProjectFiles;
+};
