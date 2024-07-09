@@ -92,15 +92,14 @@ export default function Page() {
               {fileExtension.toUpperCase()}
             </Badge>
           )}
+          <p className="mt-6 font-semibold text-base block">Category</p>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button className="mt-6 w-1/6" variant="secondary">
-                Category
+              <Button className="mt-2 w-1/6" variant="secondary">
+                {category || 'Select Category'}
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56">
-              <DropdownMenuLabel className='p-2'>Select Category</DropdownMenuLabel>
-              <DropdownMenuSeparator />
               <DropdownMenuRadioGroup
                 value={category}
                 onValueChange={setCategory}
