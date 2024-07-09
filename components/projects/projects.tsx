@@ -60,7 +60,7 @@ const Projects = () => {
           {collapsed ? '▶' : '◀'}
         </Button>
         {collapsed ? (
-          <div className="flex items-center justify-start h-full pl-2">
+          <div className="flex items-center justify-start h-full pl-2 truncate">
             <span className="text-white">
               {currentProjectId && projects[currentProjectId]?.projectName || 'No Projects'}
             </span>
@@ -76,7 +76,7 @@ const Projects = () => {
                 )}
                 onClick={() => changeProject(projectId)}
               >
-                <span>{projects[projectId].projectName}</span>
+                <span className='truncate'>{projects[projectId].projectName}</span>
                 <Button
                   onClick={(e) => handleDeleteProject(e, projectId)}
                   className="text-white hover:text-gray-300"

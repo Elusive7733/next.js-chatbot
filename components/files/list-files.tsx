@@ -26,7 +26,7 @@ const ListFiles = ({ files, category }: ListFilesProps) => {
           key={index}
           className="flex justify-between items-center p-1 text-sm font-normal"
         >
-          <span>{file}</span>
+          <span className='truncate'>{file}</span>
 
           <FaRegTrashAlt
             className="size-4 text-red-600 hover:text-red-900 cursor-pointer"
