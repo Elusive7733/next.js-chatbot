@@ -30,21 +30,17 @@ const Files = () => {
           {collapsed ? '◀' : '▶'}
         </Button>
 
-        {collapsed ? (
-          <div className="flex items-center justify-start h-full pl-2">
-            <span className="text-white">Docs in memory</span>
-          </div>
-        ) : (
+        <div className="flex items-center justify-start h-full pl-2">
+          <span className="text-white">Docs in memory</span>
+        </div>
+        {!collapsed && (
           <>
-            <div className="flex items-center justify-start h-full pl-2">
-              <span className="text-white">Docs in memory</span>
-            </div>
             <ul className="p-4 w-full text-center flex-wrap break-words text-wrap overflow-x-auto">
               {Object.values(files).map((file, index) => (
                 <li
                   key={index}
                   className={cn(
-                    `py-2 m-1 px-4 w-full hover:bg-white/10 rounded cursor-pointer break-words text-wrap overflow-x-auto flex-col gap-2`,
+                    `py-2 m-1 px-4 w-full hover:bg-white/10 rounded cursor-pointer break-words text-wrap overflow-x-auto flex-col gap-2`
                   )}
                   onClick={() => console.log(file)}
                 >
