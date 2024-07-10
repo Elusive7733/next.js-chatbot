@@ -40,17 +40,18 @@ async function UserOrLogin() {
           />
         </Link>
       )}
-      <div className="flex items-center">
+
+      {/* <div className="flex items-center">
         <IconSeparator className="size-6 text-muted-foreground/50" />
         {session?.user ? (
           <UserMenu user={session.user} />
         ) : (
-          // <Button variant="link" asChild className="-ml-2">
-          //   <Link href="/login">Login</Link>
-          // </Button>
-          null
+          <Button variant="link" asChild className="-ml-2">
+             <Link href="/login">Login</Link>
+           </Button>
+          
         )}
-      </div>
+      </div> */}
     </>
   )
 }
