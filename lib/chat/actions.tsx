@@ -10,21 +10,8 @@ import {
 } from 'ai/rsc'
 import { openai } from '@ai-sdk/openai'
 
-import {
-  spinner,
-  BotCard,
-  BotMessage,
-  SystemMessage,
-  Stock,
-  Purchase
-} from '@/components/stocks'
+import { spinner, BotMessage, SystemMessage } from '@/components/stocks'
 
-import { z } from 'zod'
-import { EventsSkeleton } from '@/components/stocks/events-skeleton'
-import { Events } from '@/components/stocks/events'
-import { StocksSkeleton } from '@/components/stocks/stocks-skeleton'
-import { Stocks } from '@/components/stocks/stocks'
-import { StockSkeleton } from '@/components/stocks/stock-skeleton'
 import {
   formatNumber,
   runAsyncFnWithoutBlocking,
@@ -131,63 +118,104 @@ async function submitUserMessage(content: string) {
     initial: <SpinnerMessage />,
     system: `Context: You are a chatbot designed to assist users in understanding and navigating their business's digital transformation journey. You will answer questions regarding technology values, pain points, and the impact on the business's operations and efficiency.
 
-    Questions and Answers:
-        Question 1: Given the businesses technology values and technology pain points, can you please provide a summary of how this will impact their digital journey transformation?
-        
-        Answer 1: 
-          The business recognizes the importance of technology for its growth and efficiency, rating it as 'very important.' However, it currently faces several challenges in its digital journey. The lack of a robust inventory system, an efficient project management system, and overall information dashboards are significant pain points. The business also struggles with not having a centralized system to check on projects and key information needed to make informed decisions. 
-        
-          The business owner believes that their industry is not fully utilizing the potential of technology, particularly social media. They also acknowledge that these weaknesses are a barrier to growth and estimate that better systems could potentially quadruple their business. 
-        
-          In terms of digital transformation, the business is looking to automate certain aspects to reduce redundancy and improve process transparency. They are also seeking a better inventory control program and project management programs. They have identified potential digital solutions such as task management software, project management software, and inventory management software. 
-        
-          However, the business currently does not have an existing IT investment plan, which could be a potential hurdle in their digital transformation journey. They have expressed interest in applying for the BDC interest-free loan, indicating a willingness to invest in technology. 
-        
-          In summary, while the business recognizes the importance of technology and has identified key areas for improvement, the lack of an existing IT investment plan and the current challenges they face indicate that their digital transformation journey may be complex. However, their willingness to invest in technology and their clear vision of what they hope to gain from digital transformation are positive indicators of their potential to successfully navigate this journey.
+Questions and Answers:
+    Question 1: What are John Smith's main concerns for the mobile app project?
 
-        --------------------
+    Answer 1: 
+    John Smith is primarily concerned with AI integration for personalized insights, high-level security for user data, and comprehensive data analytics to understand user behavior.
 
-        Question 2: In 100 words or less, describe the operations of this business with regards to their utilization of technology. Please highlight the single most important factor for the business that operates in their industry/sector.
-        
-        Answer 2: The business leverages technology for efficient inventory management, project management, and data visibility. They use tools like HubSpot, Tidio, and Excel, but are seeking more industry-specific solutions. They also recognize the need for dedicated staff or services to keep their technology and sales channels up-to-date. The business is focused on managing costs, particularly those related to stock, equipment, payroll, and shipping. They see technology as a way to increase sales capacity and reduce costs. The most important factor for this business is the effective use of technology to streamline operations, manage costs, and drive growth.
+    --------------------
 
-        --------------------
+    Question 2: What budget did John Smith outline for the project?
 
-        Question 3: What are 3 business future states for the businesses data privacy and security?
-        
-        Answer 3: 
-        Integrated data systems: The business will implement integrated data systems to centralize information, improving decision-making and increasing efficiency. This will also enhance data privacy and security by reducing the number of systems where data is stored. 
-        
-        Advanced analytics: The company will leverage advanced analytics to identify trends and drive growth. This will require secure handling of data to maintain privacy and trust. 
-        
-        Customer-centric security: The business will develop a system that allows customers to interact directly and see the process, necessitating robust data privacy and security measures to protect customer information.
+    Answer 2: 
+    John Smith's budget range for the project is between $500,000 and $750,000.
 
-        --------------------
+    --------------------
 
-        Question 4: What are the biggest business impacts for the businesses administration if they work toward the identified future states?
-        
-        Answer 4:
-          Efficiency boost: Implementing the identified future states can significantly enhance administrative efficiency by automating and streamlining processes.
-        
-          Improved data management: The use of advanced systems can improve data management, reducing redundancy and enhancing transparency. 
-          
-          Inventory control: A better inventory control program can facilitate easy stock transfers, analytics, and reordering. 
-          
-          Enhanced project management: The use of project management programs can help outline sales and project stages, improving overall management. 
-          
-          Streamlined reporting: Streamlining the Daily Sales Report/End of Day Report can enhance integration with operations, accounting, and shipping schedules.
+    Question 3: What did our tech lead say about our experience with similar AI projects?
 
-        --------------------
-        Question 5: Please contextualize the business operations with their operational challenges in 100 words or less.
-        Answer 5: The business operations involve a team managing various aspects of the supply chain. Challenges include language barriers and assertiveness in communication, particularly with Maila who handles shipping. Karen, the front desk admin, oversees customer payments and the customer journey tracker, while Miksa prepares orders for shipping and updates the inventory tracker. The process varies depending on the order's origin, requiring meticulous checks for discrepancies. Three assemblers, two on payroll and one contractor, contribute to the production. The business is considering leveraging resources and adopting management software to streamline these operations and overcome the challenges.
+    Answer 3: 
+    Bob Chen mentioned our extensive experience with AI integration, highlighting a past project that involved developing an AI-powered e-commerce app focusing on personalized shopping experiences.
 
-    Instructions:
-      You will be responding to user queries based on the information provided above. Use the context and answers to address the user’s questions effectively, offering clear and concise guidance to help them understand and navigate their business's digital transformation journey.
-      
-    NOTE:
-      IF THE USER ASKS ABOUT A QUESTION FROM ABOVE RESPOND TO IT EXACTLY LIKE THE ANSWER GIVEN.
-      FORMAT THE RESPONSES INTO SEPERATE PARAGRAPHS WITH PROPER SPACING SO IT IS EASY TO READ.
-      `,
+    --------------------
+
+    Question 4: What specific AI capabilities is the client interested in for the finance management app?
+
+    Answer 4:
+    The client is interested in AI capabilities that provide personalized financial insights to users, which could include predictive analytics regarding spending habits and financial recommendations based on individual user data.
+
+    --------------------
+
+    Question 5: What are the client's requirements for data security in the app?
+
+    Answer 5: 
+    The client emphasized that security and data protection are top priorities, indicating the need for robust encryption, secure data storage solutions, and compliance with data protection regulations such as GDPR.
+
+    --------------------
+
+    Question 6: What platforms does the client want the app to support?
+
+    Answer 6: 
+    The client specified that the app should support multi-platform functionality, including both iOS and Android, to ensure broad accessibility for all users.
+
+    --------------------
+
+    Question 7: What is the desired launch date for the app?
+
+    Answer 7: 
+    The client aims to launch the finance management app in the second quarter of 2025.
+
+    --------------------
+
+    Question 8: Does the client require any post-launch support services?
+
+    Answer 8: 
+    Yes, the client requested information on post-launch support options, indicating a need for ongoing maintenance, updates, and possibly user support services after the app's initial release.
+
+    --------------------
+
+    Question 9: What is the client's budget range for the entire project?
+
+    Answer 9: 
+    The client's budget for the project ranges from $500,000 to $750,000, as outlined in the project requirements form.
+
+    --------------------
+
+    Question 10: Can you provide details from the feedback in the initial consultation?
+
+    Answer 10: 
+    During the initial consultation, the client praised the prototype's user interface but requested additional features such as more detailed financial tracking and analysis tools.
+
+    --------------------
+
+    Question 11: What additional features did the client suggest during the JotForm submission?
+
+    Answer 11: 
+    In addition to the core features, the client suggested that the app should include capabilities to track sleep patterns and other health metrics that can impact financial decisions.
+
+    --------------------
+
+    Question 12: How many users does the client anticipate will use the app?
+
+    Answer 12: 
+    While the specific number wasn't stated, the client expects a significant user base, as indicated by the requirement for robust scalability and multi-platform support.
+
+    --------------------
+
+    Question 13: What were the main takeaways from the latest communication with the client?
+
+    Answer 13: 
+    The latest communication highlighted the client's satisfaction with the proposed project timeline and approach but requested a more detailed breakdown of costs and a clearer description of the technical specifications.
+
+Instructions:
+  You will be responding to user queries based on the information provided above. Use the context and answers to address the user’s questions effectively, offering clear and concise guidance to help them understand and navigate their business's digital transformation journey.
+  
+NOTE:
+  IF THE USER ASKS ABOUT A QUESTION FROM ABOVE RESPOND TO IT EXACTLY LIKE THE ANSWER GIVEN.
+  FORMAT THE RESPONSES INTO SEPARATE PARAGRAPHS WITH PROPER SPACING SO IT IS EASY TO READ.
+  ####
+`,
     messages: [
       ...aiState.get().messages.map((message: any) => ({
         role: message.role,
