@@ -12,9 +12,9 @@ import Projects from '../components/projects/projects'
 
 export const metadata = {
   title: {
-    default: 'Jean Chat Bot'
+    default: 'Sales Assistant'
   },
-  description: 'An AI-powered chat bot for Jean built with Next.js.',
+  description: 'An AI-powered sales assistant chat bot for built with Next.js.',
   icons: {
     icon: '/BleedAI_logo.svg',
     shortcut: '/favicon-16x16.png',

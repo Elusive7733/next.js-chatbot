@@ -6,7 +6,7 @@ import { Session } from '@/lib/types'
 import { getMissingKeys } from '@/app/actions'
 
 export const metadata = {
-  title: 'Jean AI Chatbot'
+  title: 'Sales Assistant Bot'
 }
 
 export default async function IndexPage() {
