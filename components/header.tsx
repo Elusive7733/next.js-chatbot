@@ -20,7 +20,7 @@ async function UserOrLogin() {
           <SidebarToggle />
         </>
       ) : (
-        <Link href="/new" rel="nofollow">
+        <Link href="/new" rel="nofollow" className='flex justify-center items-center'>
           <Image
             className="mr-2 dark:hidden"
             src={'/BleedAI_logo.svg'}
@@ -35,6 +35,7 @@ async function UserOrLogin() {
             width={28}
             height={28}
           />
+        <p className='text-sm mt-2 font-semibold'>Bleed AI</p>
         </Link>
       )}
     </>
