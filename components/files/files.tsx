@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import ProjectFiles from '@/components/files/project-files'
-import { useProjectStore } from '@/lib/store/store'
 
 
 const Files = () => {
