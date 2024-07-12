@@ -35,7 +35,7 @@ async function UserOrLogin() {
             width={28}
             height={28}
           />
-        <p className='text-sm mt-2 font-semibold'>Bleed AI</p>
+        <p className='text-sm mt-1 font-semibold'>Bleed AI</p>
         </Link>
       )}
     </>
