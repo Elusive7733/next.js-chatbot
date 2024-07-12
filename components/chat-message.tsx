@@ -8,8 +8,9 @@ import remarkMath from 'remark-math'
 import { cn } from '@/lib/utils'
 import { CodeBlock } from '@/components/ui/codeblock'
 import { MemoizedReactMarkdown } from '@/components/markdown'
-import { IconOpenAI, IconUser } from '@/components/ui/icons'
+import { IconUser } from '@/components/ui/icons'
 import { ChatMessageActions } from '@/components/chat-message-actions'
+import Image from 'next/image'
 
 export interface ChatMessageProps {
   message: Message
@@ -29,7 +30,17 @@ export function ChatMessage({ message, ...props }: ChatMessageProps) {
             : 'bg-primary text-primary-foreground'
         )}
       >
-        {message.role === 'user' ? <IconUser /> : <IconOpenAI />}
+        {message.role === 'user' ? (
+          <IconUser />
+        ) : (
+          <Image
+            className="bg-none"
+            src={'/BleedAI_logo.svg'}
+            alt="BleedAI"
+            width={24}
+            height={24}
+          />
+        )}
       </div>
       <div className="flex-1 px-1 ml-4 space-y-2 overflow-hidden">
         <MemoizedReactMarkdown

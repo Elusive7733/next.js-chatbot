@@ -2,9 +2,6 @@ import * as React from 'react'
 import Link from 'next/link'
 
 import { auth } from '@/auth'
-import { Button } from '@/components/ui/button'
-import { IconOpenAI, IconSeparator } from '@/components/ui/icons'
-import { UserMenu } from '@/components/user-menu'
 import { SidebarMobile } from './sidebar-mobile'
 import { SidebarToggle } from './sidebar-toggle'
 import { ChatHistory } from './chat-history'
@@ -35,23 +32,11 @@ async function UserOrLogin() {
             className="mr-2"
             src={'/BleedAI_logo.svg'}
             alt="BleedAI"
-            width={24}
-            height={24}
+            width={28}
+            height={28}
           />
         </Link>
       )}
-
-      {/* <div className="flex items-center">
-        <IconSeparator className="size-6 text-muted-foreground/50" />
-        {session?.user ? (
-          <UserMenu user={session.user} />
-        ) : (
-          <Button variant="link" asChild className="-ml-2">
-             <Link href="/login">Login</Link>
-           </Button>
-          
-        )}
-      </div> */}
     </>
   )
 }
