@@ -37,7 +37,6 @@ export function ChatPanel({
     if (currentProjectId) {
       setMessages([])
     }
-    console.log('USEEFFECT RAN')
   }, [currentProjectId, setMessages])
 
   return (
